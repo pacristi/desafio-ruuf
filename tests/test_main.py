@@ -1,10 +1,5 @@
 import pytest
-
-
-def main(a, b, x, y):
-    if a > x and b > x or a > y and b > y:
-        return 0
-    return (x * y) // (a * b)
+from src import main
 
 
 @pytest.mark.parametrize(
