@@ -3,11 +3,21 @@ from dataclasses import dataclass
 
 @dataclass
 class Rectangle:
-    side_1: int
-    side_2: int
+    height: int
+    width: int
+
+    def __post_init__(self):
+        if self.height <= 0 or self.width <= 0:
+            raise ValueError("Sides must be positive")
 
     def area(self):
-        return self.side_1 * self.side_2
+        return self.height * self.width
 
     def has_longer_sides_than(self, rectangle: 'Rectangle'):
-        return self.side_1 > rectangle.side_1 and self.side_2 > rectangle.side_1 or self.side_1 > rectangle.side_2 and self.side_2 > rectangle.side_2
+        return self.height > rectangle.height and self.width > rectangle.height or self.height > rectangle.width and self.width > rectangle.width
+
+    def can_fit_from_position_vertically(self, position: int,  rectangle: 'Rectangle'):
+        return self.height + position <= rectangle.height
+
+    def can_fit_from_position_horizontally(self, position: int,  rectangle: 'Rectangle'):
+        return self.width + position <= rectangle.width
