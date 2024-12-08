@@ -1,9 +1,9 @@
-from src import Rectangle, PanelFitter
+from src import Panel, Ruuf, PanelFitter
 
 
 def main(a, b, x, y) -> int:
-    panel = Rectangle(a, b)
-    ruuf = Rectangle(x, y)
+    panel = Panel(a, b)
+    ruuf = Ruuf(x, y)
 
     panel_fitter = PanelFitter(panel, ruuf)
     return panel_fitter.fit_count()

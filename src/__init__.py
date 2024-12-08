@@ -1,3 +1,4 @@
+from .panel import Panel
+from .ruuf import Ruuf
 from .fitter import PanelFitter
-from .rectangle import Rectangle
 from .main import main

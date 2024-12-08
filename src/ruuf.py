@@ -8,13 +8,17 @@ class Ruuf(Rectangle):
         self.tiles = [[0 for _ in range(self.width)]
                       for _ in range(self.height)]
 
-    def place_panel(self, panel: Rectangle, x: int, y: int):
-        for i in range(panel.height):
-            self.tiles[y + i][x:x + panel.width] = [1] * panel.width
+    def place(self, rectangle: Rectangle, x: int, y: int):
+        for i in range(rectangle.height):
+            for j in range(rectangle.width):
+                self.tiles[y + i][x + j] = 1
 
-    def can_fit_panel(self, panel: Rectangle, x: int, y: int) -> bool:
-        for i in range(panel.height):
-            for j in range(panel.width):
-                if self.tiles[i + y][j + x] == 1:
-                    return False
-        return True
+    def can_fit(self, rectangle: Rectangle, x: int, y: int) -> bool:
+        try:
+            for i in range(rectangle.height):
+                for j in range(rectangle.width):
+                    if self.tiles[i + y][j + x] == 1:
+                        raise IndexError()
+            return True
+        except IndexError:
+            return False
